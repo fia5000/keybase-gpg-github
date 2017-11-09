@@ -54,6 +54,24 @@ $ git config --global user.signingkey E870EE00
 $ git config --global commit.gpgsign true
 ```
 
+# USE EXISTING KEYBASE KEY
+```
+# step 1, list your Keybase ID
+$ keybase pgp list
+Keybase Key ID:  MY_KEYBASE_ID
+PGP Fingerprint: MY FIN GER PRI NT 
+PGP Identities:
+    <hello@example.com>
+# then, export your secret key and type your passphrase into the keybase prompt
+$ keybase pgp export -s | gpg --import --allow-secret-key-import
+# follow the next two instructions from the README.md
+# https://github.com/pstadler/keybase-gpg-github#set-up-git-to-sign-all-commits
+# https://github.com/pstadler/keybase-gpg-github#add-public-gpg-key-to-github
+# for the second step, use the MY_KEYBASE_ID for the `--query` / `-q` part
+```
+
+If you're just looking for existing gpg keys to put into Keybase. You just need to export from gpg and import using Keybase. That's in the Keybase docs. Try the command keybase pgp help import to get started with importing gpg generated keys.
+
 ## Add public GPG key to GitHub
 
 ```sh
